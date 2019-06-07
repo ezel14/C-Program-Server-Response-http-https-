@@ -186,6 +186,82 @@ char *read_formatted_input(FILE *stream)
   return buffer;
 }
 
+void server_response(char *url)
+{
+  ///Start a libcurl easy session 
+  CURL *curl = curl_easy_init();
+
+  ///Check if curl is not null
+  if(curl) {
+
+    CURLcode res;
+
+    ///Set the options for the curl easy handle
+    curl_easy_setopt(curl, CURLOPT_URL, url);
+    ///Url is redirected, so we tell libcurl to follow redirection
+    curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
+    ///Perform the download request without getting the body content
+    curl_easy_setopt(curl, CURLOPT_NOBODY, 1L);
+    ///Use curl_easy_perform to perform the entire request 
+    res = curl_easy_perform(curl);
+
+    ///Check if there is no errors
+    if(res == CURLE_OK) {
+      
+      ///Create a variable to hold the response code
+      long response_code;
+
+      ///Use curl handle to extract information
+      res = curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &response_code);
+      ///Print the url and the resulting response
+      printf("%s %ld %s\n", url, response_code, response_message(response_code));
+    }
+    ///Terminate the libcurl easy handle
+    curl_easy_cleanup(curl);
+  } else {
+    printf("An error occured");
+    exit(EXIT_FAILURE);
+  }
+}
+
+void server_response(char *url)
+{
+  ///Start a libcurl easy session 
+  CURL *curl = curl_easy_init();
+
+  ///Check if curl is not null
+  if(curl) {
+
+    CURLcode res;
+
+    ///Set the options for the curl easy handle
+    curl_easy_setopt(curl, CURLOPT_URL, url);
+    ///Url is redirected, so we tell libcurl to follow redirection
+    curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
+    ///Perform the download request without getting the body content
+    curl_easy_setopt(curl, CURLOPT_NOBODY, 1L);
+    ///Use curl_easy_perform to perform the entire request 
+    res = curl_easy_perform(curl);
+
+    ///Check if there is no errors
+    if(res == CURLE_OK) {
+      
+      ///Create a variable to hold the response code
+      long response_code;
+
+      ///Use curl handle to extract information
+      res = curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &response_code);
+      ///Print the url and the resulting response
+      printf("%s %ld %s\n", url, response_code, response_message(response_code));
+    }
+    ///Terminate the libcurl easy handle
+    curl_easy_cleanup(curl);
+  } else {
+    printf("An error occured");
+    exit(EXIT_FAILURE);
+  }
+}
+
 char *response_message(long response_code)
 {
   char *message = NULL;
