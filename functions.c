@@ -4,12 +4,6 @@
 #include "header_task6_es.h"
 
 
-/** Function calculates the length of the given string.
- * @author Eli Smith
- * @param[in] string- The string to copy (const char *)
- * @test int str_n_len_es(www.googlr.com) -->14
- * @date 21/03/2019
-*/
 int str_n_len_es(const char* string) 
 {
 	///Initialize the length
@@ -23,15 +17,7 @@ int str_n_len_es(const char* string)
 	return length;
 }
 
-/** Finds the first occurrence of a sub string within a string and returns a
- * pointer to the sub string. Program returns null if sub string is not found.
- * @author Eli Smith
- * @param[in] string- string to copy (const char*)
- * @param[in] sub_string- string to be found (const char*)
- * @test str_n_str_es(<a href"www.google.com"</a>, www) --> www
- * @test str_n_str_es(<a href"www.google.com"</a>, mmm) --> null
- * @date 21/03/2019
-*/
+
 char* str_n_str_es(const char* string, const char* sub_string)
 {
 	///Create a while loop to check when the first char is not equal to a zero char
@@ -46,13 +32,6 @@ char* str_n_str_es(const char* string, const char* sub_string)
 	return NULL;
 }
 
-/** This function compares two strings.
- * @author Eli Smith
- * @param[in] string1- string to copy (const char*)
- * @param[in] string2- string to copy (const char*)
- * @test str_cmp_es(<a href"www.google.com"</a>, www) --> www
- * @date 21/03/2019
-*/
 int str_cmp_es(const char* string1, const char* string2)
 {
 	///Check while there is a pointer to char in string1 and string2
@@ -67,16 +46,6 @@ int str_cmp_es(const char* string1, const char* string2)
 	return *string2 == '\0';
 }
 
-/** Finds the first occurrence of a character in the provided string.
- * It returns a pointer to the first occurrence of the character
- * in the string, or NULL if the character is not found.
- * @author Eli Smith
- * @param[in] string - string to copy (const char*)
- * @param[in] character - integer to copy (int)
- * @test str_n_str_es(<a href"www.google.com"</a>, g) --> google.com"</a>
- * @test str_n_str_es(<a href"www.google.com"</a>, z) --> null
- * @date 21/03/2019
-*/
 char* str_n_chr_es(const char* string, int character)
 {
 	///Initialize a constant char pointer to NULL
@@ -98,13 +67,6 @@ char* str_n_chr_es(const char* string, int character)
 	return (char*)ptr;
 }
 
-/** This function reads stdin and allocates memory for the input.
-* It also reallocates memory if current size is full.
-* @param[in] stream - the input text to read (stdin)
-* @test read_stdin(stdin) --> buffer
-* @test read_stdin(NULL) --> NULL
-* @date 10/04/2019
-*/
 char* read_stdin(FILE* stream)
 {
 	///Create an initial max size for the buffer to hold
@@ -132,14 +94,6 @@ char* read_stdin(FILE* stream)
 	return buffer;
 }
 
-/** This function gets the sub strings from the text line.
-* @param[in] &count - address fo num_links (int*)
-* @param[in] text_line - the buffer size to copy (char*)
-* @param[in] STRING_START - the start tag 'href=' to copy (const char[])
-* @param[in] links - pointer to memory (char**)
-* @test get_sub_strings(&count, <a href="https://www.google.co.uk/search">, href=) -->  https://www.google.co.uk/search
-* @date 10/04/2019
-*/
 char** get_sub_strings(int* count, char* text_line, const char STRING_START[], char** links)
 {
 	const size_t len_link_begin = strlen(STRING_START);
@@ -166,12 +120,6 @@ char** get_sub_strings(int* count, char* text_line, const char STRING_START[], c
 	return links;
 }
 
-/** This function counts the occurrences of STRING_START in the text_line.
-* @param[in] text_line -  (const char [])
-* @param[in] STRING_START -  (const char [])
-* @test count_sub_strings(href="https://www.google.co.uk/search">, "href=")) --> 1
-* @date 10/04/2019
-*/
 unsigned int count_sub_strings(const char* text_line, const char STRING_START[])
 {
 	///Initialize an usigned int (it can never be zero)
@@ -196,12 +144,6 @@ unsigned int count_sub_strings(const char* text_line, const char STRING_START[])
 	return count;
 }
 
-/** This function returns the pointer to to the next quotation mark in the text_line.
-* @author Eli Smith
-* @param[in] text_line -  (const char[])
-* @test next_quote("https://www.google.co.uk/search\">\n") --> "\">\n"
-* @date 10/04/2019
-*/
 const char *next_quote(const char text_line[]) 
 {
   ///Create a loop While the first char in text_line is not equal to a ' " ', a '\'' and '\0'
@@ -212,12 +154,6 @@ const char *next_quote(const char text_line[])
   return text_line;
 } 
 
-/** This function reads stdin and allocates memory for the input.
-* @author Eli Smith
-* @param[in] stream - the input text to read (FILE*)
-* @test read_formatted_input(stdin) --> buffer
-* @date 26/04/2019
-*/
 char *read_formatted_input(FILE *stream)
 {
   /// Initialize a max size for the buffer to hold
@@ -250,13 +186,6 @@ char *read_formatted_input(FILE *stream)
   return buffer;
 }
 
-/** This function accepts a response code and returns the 
- * corresponding message for it.
- * @author Eli Smith
- * @param[in] response_code - The message code to match (long)
- * @test response_message(404) --> Not Found
- * @date 03/05/2019
-*/
 char *response_message(long response_code)
 {
   char *message = NULL;
